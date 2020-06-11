@@ -217,7 +217,6 @@
     <Compile Include="Model\Track.cs" />
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="Utility\Messenger.cs" />
-    <Compile Include="Services\IVBAInterop.cs" />
     <Compile Include="Utility\VMLocator.cs" />
     <Compile Include="ViewModel\MediaPlayerViewModel.cs" />
     <Compile Include="ViewModel\PlaybackState.cs" />
