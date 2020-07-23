@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VSTOMediaPlayer.Word.Model;
+using VSTOMediaPlayer.Word;
 
 namespace VSTOMediaPlayer.Word.Services
 {
     public interface IFileBrowser
     {
         bool FileChanged { get; set; }
-        Track GetTrack();
+        MediaTrack GetTrack();
     }
 }

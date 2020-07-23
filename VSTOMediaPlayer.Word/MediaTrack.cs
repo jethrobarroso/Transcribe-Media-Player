@@ -10,31 +10,29 @@ using System.Text;
 using System.Threading.Tasks;
 using VSTOMediaPlayer.Word.MVVM;
 
-namespace VSTOMediaPlayer.Word.Model
+namespace VSTOMediaPlayer.Word
 {
-    public class Track : BindableBase
+    public class MediaTrack : BindableBase
     {
         private string _location;
 
-        public Track(string location)
+        public MediaTrack(string location)
         {
+            if (!File.Exists(location))
+                throw new FileNotFoundException("Media file could not be located", _location);
             _location = location;
         }
 
-        public string FriendlyName
-        {
-            get { return Path.GetFileName(_location); }
-        }
+        public string FriendlyName => Path.GetFileName(_location);
+
+        public string FileType => Path.GetExtension(_location);
+
+        public bool IsVideo { get; set; }
 
         public string Location
         {
             get { return _location; }
             set { SetProperty(ref _location, value); }
-        }
-
-        public string FileType
-        {
-            get { return Path.GetExtension(_location); }
         }
 
         public TimeSpan TrackDuration
@@ -50,9 +48,6 @@ namespace VSTOMediaPlayer.Word.Model
             }
         }
 
-        public override string ToString()
-        {
-            return _location;
-        }
+        public override string ToString() => _location;
     }
 }

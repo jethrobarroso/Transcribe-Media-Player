@@ -87,7 +87,7 @@
               <i:Interaction.Behaviors>
                 <my:FreeSlideBehavior />
               </i:Interaction.Behaviors>
-             
+
             </Slider>
             <Label x:Name="labelTimeRemaining" Grid.Row="2" Grid.Column="0" Padding="0,0,0,4" 
            VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Content="00:00:00"></Label>
@@ -139,16 +139,21 @@
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="0">
-              <iconPacks:PackIconMaterial Kind="PlaySpeed" />
+              <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconMaterial Kind="PlaySpeed" />
+                <Label FontSize="7" Padding="0" Margin="0" 
+                       VerticalContentAlignment="Bottom"
+                       Content="x1"></Label>
+              </StackPanel>
             </Label>
-            <Slider Grid.Column="1" VerticalAlignment="Center" Maximum="1" 
-              TickFrequency="0.1" LargeChange="0.1" Value="0.5" Padding="0"/>
+            <Slider x:Name="sliderPlaybackSpeed" Grid.Column="1" VerticalAlignment="Bottom" Maximum="1" 
+              TickFrequency="0.25" LargeChange="0.1" Value="1" Padding="0" IsSnapToTickEnabled="True" Margin="0,0,0,7" ValueChanged="OnPlaybackSpeedChanged"/>
 
             <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" 
              HorizontalAlignment="Left" Padding="0">
               <iconPacks:PackIconMaterial Kind="VolumeHigh" />
             </Label>
-            <Slider Grid.Row="1" Grid.Column="2" Maximum="1" TickFrequency="0.1" LargeChange="0.1" Value="0.5" VerticalAlignment="Center" />
+            <Slider x:Name="sliderVolume" Grid.Row="1" Grid.Column="2" Maximum="1" TickFrequency="0.01" LargeChange="0.1" Value="0.5" VerticalAlignment="Center" ValueChanged="OnVolumeSliderChanged"/>
           </Grid>
         </StackPanel>
       </GroupBox>

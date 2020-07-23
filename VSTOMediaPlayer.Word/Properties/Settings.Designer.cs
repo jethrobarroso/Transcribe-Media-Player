@@ -12,7 +12,7 @@ namespace VSTOMediaPlayer.Word.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -20,6 +20,84 @@ namespace VSTOMediaPlayer.Word.Properties {
         public static Settings Default {
             get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int LoopStep {
+            get {
+                return ((int)(this["LoopStep"]));
+            }
+            set {
+                this["LoopStep"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int PauseInterval {
+            get {
+                return ((int)(this["PauseInterval"]));
+            }
+            set {
+                this["PauseInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Wait")]
+        public string PlayMode {
+            get {
+                return ((string)(this["PlayMode"]));
+            }
+            set {
+                this["PlayMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>keyword1;F1</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection CustomShortcuts {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["CustomShortcuts"]));
+            }
+            set {
+                this["CustomShortcuts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>Speaker1;F5</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection SpeakerShortcuts {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["SpeakerShortcuts"]));
+            }
+            set {
+                this["SpeakerShortcuts"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
+            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
+            "tring>\"D:\\Downloads\\sample_video.mp4\"</string>\r\n</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection HistoricFiles {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["HistoricFiles"]));
+            }
+            set {
+                this["HistoricFiles"] = value;
             }
         }
     }

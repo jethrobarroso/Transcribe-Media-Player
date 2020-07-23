@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VSTOMediaPlayer.Word.Model;
+using VSTOMediaPlayer.Word;
 
 namespace VSTOMediaPlayer.Word.Services
 {
     public class FileBrowser : IFileBrowser
     {
-        private Track selectedTrack;
+        private MediaTrack selectedTrack;
 
         public bool FileChanged { get; set; } = false;
 
-        public Track GetTrack()
+        public MediaTrack GetTrack()
         {
             OpenFileDialog dlg = new OpenFileDialog()
             {
@@ -23,7 +23,7 @@ namespace VSTOMediaPlayer.Word.Services
 
             if (dlg.ShowDialog() == true)
             {
-                selectedTrack = new Track(dlg.FileName);
+                selectedTrack = new MediaTrack(dlg.FileName);
                 FileChanged = true;
             }
             else

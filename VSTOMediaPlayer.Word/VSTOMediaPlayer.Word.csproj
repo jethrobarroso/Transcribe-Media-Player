@@ -213,8 +213,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\ResponsiveGroupBoxConverter.cs" />
+    <Compile Include="Settings\IConfigManager.cs" />
+    <Compile Include="Settings\UserConfigManager.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="Tools\FreeSliderBehavior.cs" />
-    <Compile Include="Model\Track.cs" />
+    <Compile Include="MediaTrack.cs" />
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="Utility\VMLocator.cs" />
@@ -247,6 +250,7 @@
     <EmbeddedResource Include="View\TaskPane.resx">
       <DependentUpon>TaskPane.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -255,6 +259,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>

@@ -9,8 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using VSTOMediaPlayer.Word.Model;
+using VSTOMediaPlayer.Word;
 using VSTOMediaPlayer.Word.MVVM;
+using VSTOMediaPlayer.Word.Properties;
 using VSTOMediaPlayer.Word.Services;
 using VSTOMediaPlayer.Word.Utility;
 
@@ -25,7 +26,9 @@ namespace VSTOMediaPlayer.Word.ViewModel
         private PackIconMaterialKind _playPauseImageSource;
         private PlaybackState _playbackState;
         private IFileBrowser _fileBrowser;
-        private Track _selectedTrack;
+        private MediaTrack _selectedTrack;
+        //private Queue<MediaTrack> _trackHistoryList;
+        //private Properties.Settings _settings;
 
         #region Subscriber events for Views
         public event EventHandler PlayRequested;
@@ -48,7 +51,7 @@ namespace VSTOMediaPlayer.Word.ViewModel
                 RaisePropertyChanged();
             }
         }
-        public Track SelectedTrack
+        public MediaTrack SelectedTrack
         {
             get { return _selectedTrack; }
             set { SetProperty(ref _selectedTrack, value); }

@@ -49,6 +49,7 @@ namespace VSTOMediaPlayer.Word.View
             sliderTimeLine.Minimum = 0;
             sliderTimeLine.Maximum = 0;
             labelTimeRemaining.Content = "00:00:00";
+
         }
 
         private void OnOpenMedia(object sender, RoutedEventArgs e)
@@ -131,13 +132,27 @@ namespace VSTOMediaPlayer.Word.View
         {
             if (_timer.IsEnabled)
                 _timer.Stop();
-
-            Debug.WriteLine(TimeSpan.FromMilliseconds(sliderTimeLine.Value).ToString(@"hh\:mm\:ss"));
         }
 
         private void SliderTimeLine_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             labelTimeRemaining.Content = TimeSpan.FromMilliseconds(sliderTimeLine.Value).ToString(@"hh\:mm\:ss");
+        }
+
+        private void OnVolumeSliderChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (mePlayer != null && mePlayer.HasAudio)
+            {
+                mePlayer.Volume = sliderVolume.Value;
+            }
+        }
+
+        private void OnPlaybackSpeedChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(mePlayer != null && mePlayer.HasAudio)
+            {
+                mePlayer.SpeedRatio = (double)sliderPlaybackSpeed.Value;
+            }
         }
     }
 }
