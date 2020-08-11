@@ -12,7 +12,7 @@ namespace VSTOMediaPlayer.Word.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,51 +25,15 @@ namespace VSTOMediaPlayer.Word.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int LoopStep {
-            get {
-                return ((int)(this["LoopStep"]));
-            }
-            set {
-                this["LoopStep"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public int PauseInterval {
-            get {
-                return ((int)(this["PauseInterval"]));
-            }
-            set {
-                this["PauseInterval"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Wait")]
-        public string PlayMode {
-            get {
-                return ((string)(this["PlayMode"]));
-            }
-            set {
-                this["PlayMode"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
             "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
             "tring>keyword1;F1</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection CustomShortcuts {
+        public global::System.Collections.Specialized.StringCollection MediaHotkeys {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["CustomShortcuts"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["MediaHotkeys"]));
             }
             set {
-                this["CustomShortcuts"] = value;
+                this["MediaHotkeys"] = value;
             }
         }
         
@@ -78,12 +42,12 @@ namespace VSTOMediaPlayer.Word.Properties {
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
             "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
             "tring>Speaker1;F5</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection SpeakerShortcuts {
+        public global::System.Collections.Specialized.StringCollection SnippetHotkeys {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["SpeakerShortcuts"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["SnippetHotkeys"]));
             }
             set {
-                this["SpeakerShortcuts"] = value;
+                this["SnippetHotkeys"] = value;
             }
         }
         

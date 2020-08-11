@@ -10,36 +10,30 @@ using System.Text;
 using System.Threading.Tasks;
 using VSTOMediaPlayer.Word.MVVM;
 
-namespace VSTOMediaPlayer.Word
+namespace VSTOMediaPlayer.Word.Model
 {
-    public class MediaTrack : BindableBase
+    public class MediaTrack
     {
-        private string _location;
-
         public MediaTrack(string location)
         {
             if (!File.Exists(location))
-                throw new FileNotFoundException("Media file could not be located", _location);
-            _location = location;
+                throw new FileNotFoundException("Media file could not be located", location);
+            Location = location;
         }
 
-        public string FriendlyName => Path.GetFileName(_location);
+        public string FriendlyName => Path.GetFileName(Location);
 
-        public string FileType => Path.GetExtension(_location);
+        public string FileType => Path.GetExtension(Location);
 
         public bool IsVideo { get; set; }
 
-        public string Location
-        {
-            get { return _location; }
-            set { SetProperty(ref _location, value); }
-        }
+        public string Location { get; private set; }
 
         public TimeSpan TrackDuration
         {
             get
             {
-                using (var shell = ShellObject.FromParsingName(_location))
+                using (var shell = ShellObject.FromParsingName(Location))
                 {
                     IShellProperty prop = shell.Properties.System.Media.Duration;
                     var t = (ulong)prop.ValueAsObject;
@@ -48,6 +42,6 @@ namespace VSTOMediaPlayer.Word
             }
         }
 
-        public override string ToString() => _location;
+        public override string ToString() => Location;
     }
 }

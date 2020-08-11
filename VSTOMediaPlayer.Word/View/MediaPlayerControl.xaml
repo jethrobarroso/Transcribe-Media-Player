@@ -10,16 +10,26 @@
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:my="clr-namespace:VSTOMediaPlayer.Word.Tools"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             
+             x:Name="MediaService"
              Padding="5"
-             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="230" 
+             mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="189.5" 
              DataContext="{Binding Source={StaticResource viewModelLocator}, Path=MediaPlayerViewModel}">
 
   <UserControl.Resources>
     <ResourceDictionary>
-      <Style x:Key="ResponsiveGroupBox" TargetType="GroupBox" 
-             BasedOn="{StaticResource MahApps.Styles.GroupBox}">
+      <Style x:Key="ResponsiveContainer" TargetType="FrameworkElement">
         <Setter Property="Width" Value="350"/>
+        <Style.Triggers>
+          <DataTrigger Value="True"
+                       Binding="{Binding ElementName=GridMain, Path=ActualWidth, 
+                                 Converter={StaticResource responsiveConverter},
+                                 ConverterParameter=900}">
+            <Setter Property="Width" Value="{Binding ElementName=GridMain, Path=ActualWidth}"/>
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+
+      <Style x:Key="ResponsiveInnerContainer" TargetType="FrameworkElement">
         <Style.Triggers>
           <DataTrigger Value="True"
                        Binding="{Binding ElementName=GridMain, Path=ActualWidth, 
@@ -38,131 +48,147 @@
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
 
-
   </UserControl.Resources>
 
+  <i:Interaction.Triggers>
+    <i:EventTrigger EventName="Loaded">
+      <i:InvokeCommandAction Command="{Binding LoadedCommand}" 
+                             CommandParameter="{Binding ElementName=MediaService}"/>
+    </i:EventTrigger>
+  </i:Interaction.Triggers>
+
   <Grid x:Name="GridMain">
-    <Grid.RowDefinitions>
-    </Grid.RowDefinitions>
-    <Grid.ColumnDefinitions>
-
-    </Grid.ColumnDefinitions>
-
     <WrapPanel x:Name="stackMain" >
       <!--Media controls-->
-      <GroupBox HorizontalAlignment="Center" 
-                Style="{StaticResource ResponsiveGroupBox}">
-        <StackPanel Orientation="Vertical" Margin="5">
-          <UniformGrid x:Name="stackPanelMediaButtons" Columns="4"
+
+      <StackPanel Orientation="Vertical" Style="{StaticResource ResponsiveContainer}">
+        <UniformGrid x:Name="stackPanelMediaButtons" Columns="4"
                        MaxWidth="350"
                        Grid.Row="1" Height="50">
-            <Button x:Name="buttonSkipStart" Style="{StaticResource MahApps.Styles.Button.Flat}"
+          <Button x:Name="buttonSkipStart" Style="{StaticResource MahApps.Styles.Button.Flat}"
                   Command="{Binding PlayPauseCommand}">
-              <iconPacks:PackIconMaterial Kind="{Binding PlayPauseImageSource}" Width="32" Height="32"/>
-            </Button>
-            <Button x:Name="buttonSkipBack"
-              Command="{Binding SkipBackwardCommand}">
-              <iconPacks:PackIconMaterial Kind="SkipBackward" Width="32" Height="32"/>
-            </Button>
-            <Button x:Name="buttonPlayPause" 
+            <iconPacks:PackIconMaterial Kind="{Binding PlayPauseImage}" Width="32" Height="32"/>
+          </Button>
+          <Button x:Name="ButtonStepBack"
+              Command="{Binding StepBackCommand}">
+            <iconPacks:PackIconMaterial Kind="SkipBackward" Width="32" Height="32"/>
+          </Button>
+          <Button x:Name="buttonPlayPause" 
               Command="{Binding PlayPauseCommand}">
-              <Grid>
-                <Label Content="5" Margin="11,3,0,0"></Label>
-                <iconPacks:PackIconMaterial Kind="Restore" Width="32" Height="32"/>
-              </Grid>
-            </Button>
-            <Button x:Name="buttonRepeat">
-              <iconPacks:PackIconMaterial Kind="SkipForward" Width="32" Height="32"/>
-            </Button>
-          </UniformGrid>
+            <Grid>
+              <Label Content="5" Margin="11,3,0,0"></Label>
+              <iconPacks:PackIconMaterial Kind="Restore" Width="32" Height="32"/>
+            </Grid>
+          </Button>
+          <Button x:Name="buttonRepeat" Command="{Binding StepBackCommand}">
+            <iconPacks:PackIconMaterial Kind="SkipForward" Width="32" Height="32"/>
+          </Button>
+        </UniformGrid>
 
-          <Grid Grid.Row="2" Grid.Column="0">
-            <Slider x:Name="sliderTimeLine" Grid.Row="2" Grid.Column="0" 
+        <Grid Grid.Row="2" Grid.Column="0" Margin="0,6,0,6">
+          <Slider x:Name="sliderTimeLine" Grid.Row="2" Grid.Column="0" 
                     Style="{StaticResource MahApps.Styles.Slider.Flat}"
                     IsMoveToPointEnabled="True"
-                    ValueChanged="SliderTimeLine_ValueChanged"
-                    PreviewMouseUp="SliderTimeLine_PreviewMouseUp"
-                    MouseLeftButtonDown="SliderTimeLine_MouseLeftButtonDown"
                     VerticalAlignment="Center" Margin="0,8,50,9" Panel.ZIndex="100">
-              <i:Interaction.Behaviors>
-                <my:FreeSlideBehavior />
-              </i:Interaction.Behaviors>
+            <i:Interaction.Behaviors>
+              <my:FreeSlideBehavior />
+            </i:Interaction.Behaviors>
 
-            </Slider>
-            <Label x:Name="labelTimeRemaining" Grid.Row="2" Grid.Column="0" Padding="0,0,0,4" 
+          </Slider>
+          <Label x:Name="labelTimeRemaining" Grid.Row="2" Grid.Column="0" Padding="0,0,0,4" 
            VerticalContentAlignment="Center" HorizontalContentAlignment="Right" Content="00:00:00"></Label>
-          </Grid>
+        </Grid>
 
-          <!--IsMoveToPointEnabled="True"-->
-          <!--PreviewMouseUp="sliderTimeLine_PreviewMouseUp"-->
-          <!--Thumb.DragStarted="SliderTimeLine_DragStarted" 
+        <!--IsMoveToPointEnabled="True"-->
+        <!--PreviewMouseUp="sliderTimeLine_PreviewMouseUp"-->
+        <!--Thumb.DragStarted="SliderTimeLine_DragStarted" 
                     Thumb.DragCompleted="SliderTimeLine_DragCompleted"-->
 
-          <DockPanel Grid.Row="3" VerticalAlignment="Center">
-            <Button Grid.Row="3" Grid.Column="0" Padding="10,0" Content="Open File" 
+        <DockPanel Grid.Row="3" VerticalAlignment="Center">
+          <Button Grid.Row="3" Grid.Column="0" Padding="10,0" Content="Open File" 
               Command="{Binding OpenFileCommand}" Style="{StaticResource MahApps.Styles.Button.Flat}"/>
-            <ComboBox Grid.Row="3" >
-              <TextBlock>test</TextBlock>
-              <TextBlock>test</TextBlock>
-              <TextBlock>test</TextBlock>
-            </ComboBox>
-          </DockPanel>
-        </StackPanel>
-      </GroupBox>
+          <ComboBox Grid.Row="3" >
+            <TextBlock>test</TextBlock>
+            <TextBlock>test</TextBlock>
+            <TextBlock>test</TextBlock>
+          </ComboBox>
+        </DockPanel>
+      </StackPanel>
 
       <!-- Volume, Playback Speed, Legend -->
-      <GroupBox HorizontalAlignment="Center" 
-                Style="{StaticResource ResponsiveGroupBox}">
-        <StackPanel x:Name="StackSoundAndLegend" Orientation="Horizontal" HorizontalAlignment="Center">
-          <UniformGrid Columns="2" Rows="5" VerticalAlignment="Top">
-            <TextBlock Text="Operation " FontWeight="ExtraBold" HorizontalAlignment="Right"/>
-            <TextBlock Text="Key" FontWeight="ExtraBold" HorizontalAlignment="Center"/>
-            <TextBlock Text="Play/Pause: " HorizontalAlignment="Right"/>
-            <TextBlock Text="F1" HorizontalAlignment="Center"/>
-            <TextBlock Text="Step back: " HorizontalAlignment="Right"/>
-            <TextBlock Text="F2" HorizontalAlignment="Center"/>
-            <TextBlock Text="Loop: " HorizontalAlignment="Right"/>
-            <TextBlock Text="F3" HorizontalAlignment="Center"/>
-            <TextBlock Text="Skip forward: " HorizontalAlignment="Right"/>
-            <TextBlock Text="F1" HorizontalAlignment="Center"/>
-          </UniformGrid>
-          <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-          <Grid Grid.RowSpan="2" Height="60" Width="100"
-            VerticalAlignment="Top" Margin="20,0,20,0">
+      <Border>
+        <StackPanel x:Name="StackSoundAndLegend" Margin="5"
+                  HorizontalAlignment="Center" Style="{StaticResource ResponsiveInnerContainer}">
+          <Grid Grid.RowSpan="2" Width="110"
+            VerticalAlignment="Top" Margin="5,0,5,0">
             <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="20"/>
               <ColumnDefinition/>
-              <ColumnDefinition Width="3*"/>
+              <ColumnDefinition Width="25"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-              <RowDefinition/>
-              <RowDefinition/>
+              <RowDefinition Height="25"/>
+              <RowDefinition Height="25"/>
+              <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="0">
-              <StackPanel Orientation="Horizontal">
-                <iconPacks:PackIconMaterial Kind="PlaySpeed" />
-                <Label FontSize="7" Padding="0" Margin="0" 
-                       VerticalContentAlignment="Bottom"
-                       Content="x1"></Label>
-              </StackPanel>
+              <iconPacks:PackIconMaterial Kind="PlaySpeed" />
             </Label>
-            <Slider x:Name="sliderPlaybackSpeed" Grid.Column="1" VerticalAlignment="Bottom" Maximum="1" 
-              TickFrequency="0.25" LargeChange="0.1" Value="1" Padding="0" IsSnapToTickEnabled="True" Margin="0,0,0,7" ValueChanged="OnPlaybackSpeedChanged"/>
+            <Slider x:Name="sliderPlayback" Grid.Row="0" Grid.Column="1"
+                    Maximum="2" TickFrequency="0.01" LargeChange="0.1" 
+                    Value="1" VerticalAlignment="Center"/>
+            <Border Grid.Column="2" Margin="3,0,0,0" Height="10" Width="10"
+                  HorizontalAlignment="Left">
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="x" VerticalAlignment="Center" FontSize="9"/>
+                <TextBlock Text="{Binding Value, ElementName=sliderPlayback}"
+                         VerticalAlignment="Center" FontSize="9"/>
+              </StackPanel>
+            </Border>
 
             <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" 
              HorizontalAlignment="Left" Padding="0">
               <iconPacks:PackIconMaterial Kind="VolumeHigh" />
             </Label>
-            <Slider x:Name="sliderVolume" Grid.Row="1" Grid.Column="2" Maximum="1" TickFrequency="0.01" LargeChange="0.1" Value="0.5" VerticalAlignment="Center" ValueChanged="OnVolumeSliderChanged"/>
+            <Slider x:Name="sliderVolume" Grid.Row="1" Grid.Column="1" 
+                    Maximum="1" TickFrequency="0.01" LargeChange="0.1" 
+                    Value="0.5" VerticalAlignment="Center"/>
+
+            <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" 
+             HorizontalAlignment="Right" Padding="0" Content="L "/>
+            <Slider x:Name="channelSlider" Grid.Row="2" Grid.Column="1" 
+                    Maximum="1" TickFrequency="0.01" LargeChange="0.1" 
+                    Value="0.5" VerticalAlignment="Center"/>
+            <Label Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" 
+             HorizontalAlignment="Left" Padding="0" Content=" R"/>
           </Grid>
+          <!--<Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />-->
+          <StackPanel MaxWidth="120">
+            <Button Margin="0,0,0,2" Click="Button_Click">
+              <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconMaterial Kind="CogOutline" />
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0,0,0"
+                           Text="Configure Hotkeys" FontSize="7" FontWeight="Bold"/>
+              </StackPanel>
+            </Button>
+            <Button>
+              <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconMaterial Kind="HelpCircleOutline" />
+                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold"
+                           Text="Help" FontSize="7"/>
+              </StackPanel>
+            </Button>
+          </StackPanel>
         </StackPanel>
-      </GroupBox>
+      </Border>
 
       <!-- Mediaplayer element -->
-      <MediaElement x:Name="mePlayer" LoadedBehavior="Manual" 
-                  HorizontalAlignment="Left" 
+      <Grid Margin="5">
+        <MediaElement x:Name="mePlayer" LoadedBehavior="Manual" MinWidth="200" MinHeight="100"
+                  HorizontalAlignment="Left" Source="{Binding MediaPath}"
                   ScrubbingEnabled="True"/>
+      </Grid>
     </WrapPanel>
-
   </Grid>
 </UserControl>

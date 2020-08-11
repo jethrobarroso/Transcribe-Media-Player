@@ -13,17 +13,17 @@ namespace VSTOMediaPlayer.Word.View
 {
     public partial class TaskPane : UserControl
     {
-        private ElementHost host;
-        private MediaPlayerControl mediaElement;
+        private ElementHost _host;
+        private MediaPlayerControl _mediaElement;
 
         public TaskPane()
         {
             InitializeComponent();
-            host = new ElementHost();
-            mediaElement = new MediaPlayerControl();
-            host.Child = mediaElement;
-            host.Dock = DockStyle.Fill;
-            this.Controls.Add(host);
+            _host = new ElementHost();
+            _mediaElement = new MediaPlayerControl();
+            _host.Child = _mediaElement;
+            _host.Dock = DockStyle.Fill;
+            this.Controls.Add(_host);
         }
 
         private void TaskPane_Load(object sender, EventArgs e)

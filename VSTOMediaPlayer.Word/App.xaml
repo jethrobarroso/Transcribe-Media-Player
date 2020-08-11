@@ -6,7 +6,7 @@
              xmlns:locator="clr-namespace:VSTOMediaPlayer.Word.Utility">
   <Application.Resources>
     <ResourceDictionary>
-      <locator:VMLocator x:Key="viewModelLocator"></locator:VMLocator>
+      <locator:VMLocator x:Key="viewModelLocator"/>
       <converter:ResponsiveGroupBoxConverter x:Key="responsiveConverter"/>
       <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />

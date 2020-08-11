@@ -1,6 +1,7 @@
 ﻿using MahApps.Metro.IconPacks;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -9,7 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using VSTOMediaPlayer.Word;
+using VSTOMediaPlayer.Word.Model;
 using VSTOMediaPlayer.Word.MVVM;
 using VSTOMediaPlayer.Word.Properties;
 using VSTOMediaPlayer.Word.Services;
@@ -17,144 +20,130 @@ using VSTOMediaPlayer.Word.Utility;
 
 namespace VSTOMediaPlayer.Word.ViewModel
 {
-    [ComVisible(true)]
-    [ClassInterface(ClassInterfaceType.None)]
     public class MediaPlayerViewModel : BindableBase
     {
         private readonly PackIconMaterialKind _playImage = PackIconMaterialKind.Play;
         private readonly PackIconMaterialKind _pauseImage = PackIconMaterialKind.Pause;
-        private PackIconMaterialKind _playPauseImageSource;
-        private PlaybackState _playbackState;
-        private IFileBrowser _fileBrowser;
-        private MediaTrack _selectedTrack;
-        //private Queue<MediaTrack> _trackHistoryList;
-        //private Properties.Settings _settings;
 
-        #region Subscriber events for Views
-        public event EventHandler PlayRequested;
-        public event EventHandler PauseRequested;
-        public event EventHandler ResumeRequested;
-        public event EventHandler SkipForwardRequested;
-        public event EventHandler SkipBackwardRequested;
-        public event EventHandler StopRequested;
-        #endregion
-
-        #region Bindable properties
-        public PackIconMaterialKind PlayPauseImageSource
-        {
-            get { return _playPauseImageSource; }
-            set
-            {
-                if (value == _playPauseImageSource) return;
-                _playPauseImageSource = value;
-                //OnPropertyChanged(nameof(PlayPauseImageSource));
-                RaisePropertyChanged();
-            }
-        }
-        public MediaTrack SelectedTrack
-        {
-            get { return _selectedTrack; }
-            set { SetProperty(ref _selectedTrack, value); }
-        }
-        public TimeSpan MediaTime { get; set; }
-
-        public ICommand OpenFileCommand { get; set; }
-        public ICommand PlayPauseCommand { get; set; }
-        public ICommand SkipForwardCommand { get; set; }
-        public ICommand SkipBackwardCommand { get; set; } 
-        public ICommand StopCommand { get; set; }
-        #endregion
+        private IMediaService _mediaService;
+        private string _mediaPath;
+        private bool _isPlaying;
+        private ObservableCollection<string> _fileHistory;
+        private PackIconMaterialKind _playPauseImage;
+        private ObservableCollection<ShortcutKey> _mediaShortcuts;
+        private readonly IFileBrowser _fileBrowser;
 
         public MediaPlayerViewModel(IFileBrowser fileBrowser)
         {
-            _playbackState = PlaybackState.Stopped;
-            PlayPauseImageSource = _playImage;
-            LoadCommands();
-            this._fileBrowser = fileBrowser;
-        }
+            InitialiseCommands();
+            _fileBrowser = fileBrowser;
 
-        public void LoadCommands()
-        {
-            OpenFileCommand = new RelayCommand(OpenFile);
-            PlayPauseCommand = new RelayCommand(PlayFile, CanPlayFile);
-            SkipForwardCommand = new RelayCommand(SkipForward, CanSkipForward);
-            SkipBackwardCommand = new RelayCommand(SkipBackward, CanSkipBackward);
-            StopCommand = new RelayCommand(StopFile, CanStopFile);
-        }
+            PlayPauseImage = _playImage;
 
-        private bool CanStopFile(object obj)
-        {
-            return HasTrack();
-        }
-
-        private void StopFile(object obj)
-        {
-            StopRequested?.Invoke(this, new EventArgs());
-        }
-
-        private bool CanSkipBackward(object obj)
-        {
-            return HasTrack();
-        }
-
-        private void SkipBackward(object obj)
-        {
-            SkipBackwardRequested?.Invoke(this, new EventArgs());
-        }
-
-        private bool CanSkipForward(object obj)
-        {
-            return HasTrack();
-        }
-
-        private void SkipForward(object obj)
-        {
-            SkipForwardRequested?.Invoke(this, new EventArgs());
-        }
-
-        private void PlayFile(object obj)
-        {
-            if (_playbackState == PlaybackState.Stopped)
+            MediaShortcuts = new ObservableCollection<ShortcutKey>
             {
-                PlayRequested?.Invoke(this, new EventArgs());
-                _playbackState = PlaybackState.Playing;
-                PlayPauseImageSource = _pauseImage;
-            }
-            else if (_playbackState == PlaybackState.Playing)
+                new ShortcutKey { KeyName = "Play/Pause", InputKey="F1" },
+                new ShortcutKey { KeyName = "Step Back", InputKey="F2" },
+                new ShortcutKey { KeyName = "Step Forward", InputKey="F3" },
+            };
+        }
+
+        #region Properties
+        public IMediaService MediaService
+        {
+            get { return _mediaService; }
+            set { SetProperty(ref _mediaService, value); }
+        }
+
+        public ICommand LoadedCommand { get; set; }
+        public ICommand PlayPauseCommand { get; set; }
+        public ICommand StopCommand { get; set; }
+        public ICommand StepForwardCommand { get; set; }
+        public ICommand StepBackCommand { get; set; }
+        public ICommand OpenFileCommand { get; set; }
+
+        public string MediaPath
+        {
+            get { return _mediaPath; }
+            set { SetProperty(ref _mediaPath, value); }
+        }
+
+        public bool IsPlaying
+        {
+            get { return _isPlaying; }
+            set { SetProperty(ref _isPlaying, value); }
+        }
+
+        public ObservableCollection<string> FileHistory
+        {
+            get { return _fileHistory; }
+            set { SetProperty(ref _fileHistory, value); }
+        }
+
+        public ObservableCollection<ShortcutKey> MediaShortcuts
+        {
+            get { return _mediaShortcuts; }
+            set { SetProperty(ref _mediaShortcuts, value); }
+        }
+
+        public PackIconMaterialKind PlayPauseImage
+        {
+            get { return _playPauseImage; }
+            set { SetProperty(ref _playPauseImage, value); }
+        }
+        #endregion
+
+        #region Command callbacks
+        private void StepBack(object obj)
+        {
+            MediaService.StepBack(TimeSpan.FromSeconds(2));
+        }
+
+        private void StepForward(object obj)
+        {
+            MediaService.StepForward(TimeSpan.FromSeconds(2));
+        }
+
+        private void Stop(object obj)
+        {
+            MediaService.Stop();
+        }
+
+        private void PlayPause(object obj)
+        { 
+            if(IsPlaying)
             {
-                PauseRequested?.Invoke(this, new EventArgs());
-                _playbackState = PlaybackState.Paused;
-                PlayPauseImageSource = _playImage;
+                PlayPauseImage = _playImage;
+                MediaService.Pause();
+                IsPlaying = false;
             }
             else
             {
-                ResumeRequested?.Invoke(this, new EventArgs());
-                _playbackState = PlaybackState.Playing;
-                PlayPauseImageSource = _pauseImage;
-            }
-
-        }
-
-        private bool CanPlayFile(object obj)
-        {
-            return HasTrack();
-        }
-
-        private void OpenFile(object obj)
-        {
-            SelectedTrack = _fileBrowser.GetTrack();
-
-            if (_fileBrowser.FileChanged == true)
-            {
-                StopFile(this);
+                PlayPauseImage = _pauseImage;
+                MediaService.Play();
+                IsPlaying = true;
             }
         }
 
-        private bool HasTrack()
+        private void Loaded(object obj) => MediaService = obj as IMediaService;
+
+        private void LoadMedia(object obj)
         {
-            if (SelectedTrack != null)
-                return true;
-            return false;
+            MediaTrack track = _fileBrowser.GetTrack();
+            MediaPath = track.Location;
         }
+        #endregion
+
+        private void InitialiseCommands()
+        {
+            LoadedCommand = new RelayCommand(Loaded);
+            PlayPauseCommand = new RelayCommand(PlayPause);
+            StopCommand = new RelayCommand(Stop);
+            StepForwardCommand = new RelayCommand(StepForward);
+            StepBackCommand = new RelayCommand(StepBack);
+            OpenFileCommand = new RelayCommand(LoadMedia);
+        }
+
+        
     }
 }

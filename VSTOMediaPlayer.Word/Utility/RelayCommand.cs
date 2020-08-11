@@ -11,7 +11,6 @@ namespace VSTOMediaPlayer.Word.Utility
     {
         private readonly Action<object> _execute;
         private readonly Predicate<object> _canExecute;
-        private ICommand updatePageLayoutCommand;
 
         public RelayCommand(Action<object> execute) : this(execute, null)
         {
@@ -21,11 +20,6 @@ namespace VSTOMediaPlayer.Word.Utility
         {
             _execute = execute;
             _canExecute = canExecute;
-        }
-
-        public RelayCommand(ICommand updatePageLayoutCommand)
-        {
-            this.updatePageLayoutCommand = updatePageLayoutCommand;
         }
 
         public bool CanExecute(object parameter)

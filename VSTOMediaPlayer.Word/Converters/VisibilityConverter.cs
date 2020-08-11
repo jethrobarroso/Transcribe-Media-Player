@@ -8,16 +8,11 @@ using System.Windows.Data;
 
 namespace VSTOMediaPlayer.Word.Converters
 {
-    class ResponsiveGroupBoxConverter : IValueConverter
+    public class VisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            double parentWidth = (double)value;
-            double widthThreshold = double.Parse(parameter.ToString());
-
-            if (parentWidth < widthThreshold)
-                return true;
-            return false;
+            throw new NotImplementedException();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

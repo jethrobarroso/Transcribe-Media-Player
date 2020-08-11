@@ -15,11 +15,6 @@ namespace VSTOMediaPlayer.Word.MVVM
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        protected void RaisePropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public event PropertyChangedEventHandler PropertyChanged = delegate { };
     }
 }
