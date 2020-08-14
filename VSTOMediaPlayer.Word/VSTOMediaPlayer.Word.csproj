@@ -153,6 +153,12 @@
     <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.19\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
     </Reference>
+    <Reference Include="NHotkey, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a76ffb086700b11c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHotkey.2.1.0\lib\net45\NHotkey.dll</HintPath>
+    </Reference>
+    <Reference Include="NHotkey.Wpf, Version=2.0.0.0, Culture=neutral, PublicKeyToken=a76ffb086700b11c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHotkey.Wpf.2.1.0\lib\net45\NHotkey.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -221,19 +227,23 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ApplicationRibbon.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\ApplicationRibbon.Designer.cs">
+      <DependentUpon>ApplicationRibbon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Converters\ResponsiveGroupBoxConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
-    <Compile Include="Model\ShortcutKey.cs" />
     <Compile Include="Model\PlayMode.cs" />
     <Compile Include="Services\IMediaService.cs" />
-    <Compile Include="Settings\IConfigManager.cs" />
-    <Compile Include="Settings\UserConfigManager.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Tools\FreeSliderBehavior.cs" />
     <Compile Include="Model\MediaTrack.cs" />
     <Compile Include="ViewModel\BindableBase.cs" />
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="Utility\VMLocator.cs" />
+    <Compile Include="ViewModel\ConfigureViewModel.cs" />
     <Compile Include="ViewModel\MediaPlayerViewModel.cs" />
     <Compile Include="ViewModel\PlaybackState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -260,6 +270,9 @@
     <Compile Include="View\MediaPlayerControl.xaml.cs">
       <DependentUpon>MediaPlayerControl.xaml</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\ApplicationRibbon.resx">
+      <DependentUpon>ApplicationRibbon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -321,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Commands\" />
+    <Folder Include="Configuration\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

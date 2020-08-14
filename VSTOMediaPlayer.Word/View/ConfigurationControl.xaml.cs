@@ -24,5 +24,13 @@ namespace VSTOMediaPlayer.Word.View
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var doc = Globals.ThisAddIn.Application.ActiveDocument;
+            var selection = doc.Application.Selection;
+
+            selection.TypeText("testing123");
+        }
     }
 }

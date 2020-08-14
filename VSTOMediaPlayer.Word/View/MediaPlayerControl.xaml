@@ -116,7 +116,7 @@
       </StackPanel>
 
       <!-- Volume, Playback Speed, Legend -->
-      <Border>
+      <Border Margin="7">
         <StackPanel x:Name="StackSoundAndLegend" Margin="5"
                   HorizontalAlignment="Center" Style="{StaticResource ResponsiveInnerContainer}">
           <Grid Grid.RowSpan="2" Width="110"
@@ -164,27 +164,23 @@
              HorizontalAlignment="Left" Padding="0" Content=" R"/>
           </Grid>
           <!--<Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />-->
-          <StackPanel MaxWidth="120">
-            <Button Margin="0,0,0,2" Click="Button_Click">
+          <UniformGrid MaxWidth="120" >
+            <Button Click="Button_Click">
               <StackPanel Orientation="Horizontal">
                 <iconPacks:PackIconMaterial Kind="CogOutline" />
-                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0,0,0"
-                           Text="Configure Hotkeys" FontSize="7" FontWeight="Bold"/>
               </StackPanel>
             </Button>
             <Button>
               <StackPanel Orientation="Horizontal">
                 <iconPacks:PackIconMaterial Kind="HelpCircleOutline" />
-                <TextBlock VerticalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold"
-                           Text="Help" FontSize="7"/>
               </StackPanel>
             </Button>
-          </StackPanel>
+          </UniformGrid>
         </StackPanel>
       </Border>
 
       <!-- Mediaplayer element -->
-      <Grid Margin="5">
+      <Grid>
         <MediaElement x:Name="mePlayer" LoadedBehavior="Manual" MinWidth="200" MinHeight="100"
                   HorizontalAlignment="Left" Source="{Binding MediaPath}"
                   ScrubbingEnabled="True"/>

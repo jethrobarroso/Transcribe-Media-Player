@@ -25,43 +25,139 @@ namespace VSTOMediaPlayer.Word.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>keyword1;F1</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection MediaHotkeys {
+        [global::System.Configuration.DefaultSettingValueAttribute("F1,1")]
+        public string TogglePlayPause {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["MediaHotkeys"]));
+                return ((string)(this["TogglePlayPause"]));
             }
             set {
-                this["MediaHotkeys"] = value;
+                this["TogglePlayPause"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>Speaker1;F5</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection SnippetHotkeys {
+        [global::System.Configuration.DefaultSettingValueAttribute("F2,5")]
+        public string SkipBack {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["SnippetHotkeys"]));
+                return ((string)(this["SkipBack"]));
             }
             set {
-                this["SnippetHotkeys"] = value;
+                this["SkipBack"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>\"D:\\Downloads\\sample_video.mp4\"</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection HistoricFiles {
+        [global::System.Configuration.DefaultSettingValueAttribute("F3,5")]
+        public string SkipForward {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["HistoricFiles"]));
+                return ((string)(this["SkipForward"]));
             }
             set {
-                this["HistoricFiles"] = value;
+                this["SkipForward"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F4,1")]
+        public string PlayUntilRelease {
+            get {
+                return ((string)(this["PlayUntilRelease"]));
+            }
+            set {
+                this["PlayUntilRelease"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F9,5,1")]
+        public string PlayRepeat {
+            get {
+                return ((string)(this["PlayRepeat"]));
+            }
+            set {
+                this["PlayRepeat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F10,3")]
+        public string PlayWait {
+            get {
+                return ((string)(this["PlayWait"]));
+            }
+            set {
+                this["PlayWait"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F6")]
+        public string VolumeUp {
+            get {
+                return ((string)(this["VolumeUp"]));
+            }
+            set {
+                this["VolumeUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F5")]
+        public string VolumeDown {
+            get {
+                return ((string)(this["VolumeDown"]));
+            }
+            set {
+                this["VolumeDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F8")]
+        public string PlaybackUp {
+            get {
+                return ((string)(this["PlaybackUp"]));
+            }
+            set {
+                this["PlaybackUp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("F7")]
+        public string PlaybackDown {
+            get {
+                return ((string)(this["PlaybackDown"]));
+            }
+            set {
+                this["PlaybackDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
+<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
+  <string>{$time_short} Shrot time</string>
+  <string>{$time_long} Long time</string>
+  <string>{$date_short} Date short</string>
+  <string>{$date_long} Date long</string>
+</ArrayOfString>")]
+        public global::System.Collections.Specialized.StringCollection Snippets {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["Snippets"]));
+            }
+            set {
+                this["Snippets"] = value;
             }
         }
     }

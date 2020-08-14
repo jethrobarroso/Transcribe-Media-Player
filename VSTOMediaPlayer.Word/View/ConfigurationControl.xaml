@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:VSTOMediaPlayer.Word.View"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             mc:Ignorable="d" MinWidth="600" MinHeight="500"
-             d:DesignHeight="500" d:DesignWidth="600">
+             mc:Ignorable="d" 
+             d:DesignHeight="394" d:DesignWidth="532">
   <Grid>
     <Grid.ColumnDefinitions>
 
@@ -23,7 +23,10 @@
             <RowDefinition Height="30"/>
             <RowDefinition/>
           </Grid.RowDefinitions>
-          <ComboBox Margin="0,2"/>
+          <ComboBox Margin="0,2">
+            <ComboBoxItem>Media Commands</ComboBoxItem>
+            <ComboBoxItem>Snippets</ComboBoxItem>
+          </ComboBox>
           <ListBox Grid.Row="1" MinWidth="250"/>
 
         </Grid>
@@ -37,7 +40,7 @@
               <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-              <ColumnDefinition />
+              <ColumnDefinition Width="80"/>
               <ColumnDefinition />
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -71,7 +74,7 @@
               <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-              <ColumnDefinition />
+              <ColumnDefinition Width="80"/>
               <ColumnDefinition />
               <ColumnDefinition />
             </Grid.ColumnDefinitions>
@@ -99,7 +102,7 @@
 
     <DockPanel Grid.Row="2">
       <StackPanel Grid.Row="2" Orientation="Horizontal">
-        <Button Content="Add" Width="60" Margin="5"/>
+        <Button Content="Add" Width="60" Margin="5" Click="Button_Click"/>
         <Button Content="Remove" Width="60" Margin="5"/>
       </StackPanel>
       <Button DockPanel.Dock="Left" Content="Reset to default" Margin="5"/>

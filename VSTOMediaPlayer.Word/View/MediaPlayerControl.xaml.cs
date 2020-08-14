@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NHotkey;
+using NHotkey.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;

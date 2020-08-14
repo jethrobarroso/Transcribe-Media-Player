@@ -1,4 +1,6 @@
 ﻿using MahApps.Metro.IconPacks;
+using Microsoft.WindowsAPICodePack.Shell.Interop;
+using NHotkey.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,7 +32,6 @@ namespace VSTOMediaPlayer.Word.ViewModel
         private bool _isPlaying;
         private ObservableCollection<string> _fileHistory;
         private PackIconMaterialKind _playPauseImage;
-        private ObservableCollection<ShortcutKey> _mediaShortcuts;
         private readonly IFileBrowser _fileBrowser;
 
         public MediaPlayerViewModel(IFileBrowser fileBrowser)
@@ -39,13 +40,7 @@ namespace VSTOMediaPlayer.Word.ViewModel
             _fileBrowser = fileBrowser;
 
             PlayPauseImage = _playImage;
-
-            MediaShortcuts = new ObservableCollection<ShortcutKey>
-            {
-                new ShortcutKey { KeyName = "Play/Pause", InputKey="F1" },
-                new ShortcutKey { KeyName = "Step Back", InputKey="F2" },
-                new ShortcutKey { KeyName = "Step Forward", InputKey="F3" },
-            };
+            
         }
 
         #region Properties
@@ -78,12 +73,6 @@ namespace VSTOMediaPlayer.Word.ViewModel
         {
             get { return _fileHistory; }
             set { SetProperty(ref _fileHistory, value); }
-        }
-
-        public ObservableCollection<ShortcutKey> MediaShortcuts
-        {
-            get { return _mediaShortcuts; }
-            set { SetProperty(ref _mediaShortcuts, value); }
         }
 
         public PackIconMaterialKind PlayPauseImage
