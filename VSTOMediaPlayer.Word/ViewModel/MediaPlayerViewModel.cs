@@ -40,7 +40,7 @@ namespace VSTOMediaPlayer.Word.ViewModel
             _fileBrowser = fileBrowser;
 
             PlayPauseImage = _playImage;
-            
+            LoadShortcuts();
         }
 
         #region Properties
@@ -133,6 +133,11 @@ namespace VSTOMediaPlayer.Word.ViewModel
             OpenFileCommand = new RelayCommand(LoadMedia);
         }
 
-        
+        private void LoadShortcuts()
+        {
+            //var settings = Settings.Default;
+            //HotkeyManager.Current.AddOrReplace(nameof(settings.TogglePlayPause), Key.B, ModifierKeys.Control, (s, e) => MessageBox.Show("Hellow"));
+            
+        }
     }
 }
