@@ -19,7 +19,6 @@ namespace VSTOMediaPlayer.Word
     {
         private TaskPane taskPane;
         private CustomTaskPane customTaskPane;
-        private MediaPlayerViewModel viewModel = VMLocator.MediaPlayerViewModel;
 
         private void ApplicationRibbon_Load(object sender, RibbonUIEventArgs e)
         {

@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.IconPacks;
 using Microsoft.WindowsAPICodePack.Shell.Interop;
+using NHotkey;
 using NHotkey.Wpf;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,6 @@ namespace VSTOMediaPlayer.Word.ViewModel
             _fileBrowser = fileBrowser;
 
             PlayPauseImage = _playImage;
-            LoadShortcuts();
         }
 
         #region Properties
@@ -51,7 +51,7 @@ namespace VSTOMediaPlayer.Word.ViewModel
         }
 
         public ICommand LoadedCommand { get; set; }
-        public ICommand PlayPauseCommand { get; set; }
+        public ICommand RegularPlayPauseCommand { get; set; }
         public ICommand StopCommand { get; set; }
         public ICommand StepForwardCommand { get; set; }
         public ICommand StepBackCommand { get; set; }
@@ -126,18 +126,11 @@ namespace VSTOMediaPlayer.Word.ViewModel
         private void InitialiseCommands()
         {
             LoadedCommand = new RelayCommand(Loaded);
-            PlayPauseCommand = new RelayCommand(PlayPause);
+            RegularPlayPauseCommand = new RelayCommand(PlayPause);
             StopCommand = new RelayCommand(Stop);
             StepForwardCommand = new RelayCommand(StepForward);
             StepBackCommand = new RelayCommand(StepBack);
             OpenFileCommand = new RelayCommand(LoadMedia);
-        }
-
-        private void LoadShortcuts()
-        {
-            //var settings = Settings.Default;
-            //HotkeyManager.Current.AddOrReplace(nameof(settings.TogglePlayPause), Key.B, ModifierKeys.Control, (s, e) => MessageBox.Show("Hellow"));
-            
         }
     }
 }

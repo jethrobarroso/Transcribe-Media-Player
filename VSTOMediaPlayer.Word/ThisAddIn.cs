@@ -16,20 +16,9 @@ namespace VSTOMediaPlayer.Word
 {
     public partial class ThisAddIn
     {
-        //private TaskPane taskPane;
-        //private CustomTaskPane customTaskPane;
-        //private MediaPlayerViewModel viewModel = VMLocator.MediaPlayerViewModel;
-
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
-            //viewModel = VMLocator.MediaPlayerViewModel;
-
             InitializeAppResources();
-
-            //taskPane = new TaskPane();
-            //customTaskPane = this.CustomTaskPanes.Add(taskPane, "Media Player");
-            //customTaskPane.Visible = true;
-            //customTaskPane.DockPosition = Office.MsoCTPDockPosition.msoCTPDockPositionTop;
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

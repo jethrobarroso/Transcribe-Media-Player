@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSTOMediaPlayer.Word", "VSTOMediaPlayer.Word\VSTOMediaPlayer.Word.csproj", "{B64E3C7E-4192-48E7-A666-367033E85CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSTOMediaPlayer.Test", "VSTOMediaPlayer.Test\VSTOMediaPlayer.Test.csproj", "{37ABFE6C-0A28-427F-9526-0AF0BCD5E8BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSTOMediaPlayer.Test", "VSTOMediaPlayer.Test\VSTOMediaPlayer.Test.csproj", "{7A76D17B-728D-4E92-B874-0B8E9A0AEAE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B64E3C7E-4192-48E7-A666-367033E85CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B64E3C7E-4192-48E7-A666-367033E85CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B64E3C7E-4192-48E7-A666-367033E85CF8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37ABFE6C-0A28-427F-9526-0AF0BCD5E8BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37ABFE6C-0A28-427F-9526-0AF0BCD5E8BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37ABFE6C-0A28-427F-9526-0AF0BCD5E8BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37ABFE6C-0A28-427F-9526-0AF0BCD5E8BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A76D17B-728D-4E92-B874-0B8E9A0AEAE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A76D17B-728D-4E92-B874-0B8E9A0AEAE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A76D17B-728D-4E92-B874-0B8E9A0AEAE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A76D17B-728D-4E92-B874-0B8E9A0AEAE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

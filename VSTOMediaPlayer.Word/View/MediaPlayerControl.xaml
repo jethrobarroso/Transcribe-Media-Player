@@ -62,27 +62,33 @@
       <!--Media controls-->
 
       <StackPanel Orientation="Vertical" Style="{StaticResource ResponsiveContainer}">
-        <UniformGrid x:Name="stackPanelMediaButtons" Columns="4"
+        <UniformGrid x:Name="stackPanelMediaButtons" Columns="5"
                        MaxWidth="350"
                        Grid.Row="1" Height="50">
           <Button x:Name="buttonSkipStart" Style="{StaticResource MahApps.Styles.Button.Flat}"
-                  Command="{Binding PlayPauseCommand}">
+                  Command="{Binding RegularPlayPauseCommand}">
             <iconPacks:PackIconMaterial Kind="{Binding PlayPauseImage}" Width="32" Height="32"/>
           </Button>
           <Button x:Name="ButtonStepBack"
               Command="{Binding StepBackCommand}">
-            <iconPacks:PackIconMaterial Kind="SkipBackward" Width="32" Height="32"/>
-          </Button>
-          <Button x:Name="buttonPlayPause" 
-              Command="{Binding PlayPauseCommand}">
-            <Grid>
-              <Label Content="5" Margin="11,3,0,0"></Label>
-              <iconPacks:PackIconMaterial Kind="Restore" Width="32" Height="32"/>
-            </Grid>
+            <iconPacks:PackIconMaterial Kind="ChevronDoubleLeft" Width="32" Height="32"/>
           </Button>
           <Button x:Name="buttonRepeat" Command="{Binding StepBackCommand}">
-            <iconPacks:PackIconMaterial Kind="SkipForward" Width="32" Height="32"/>
+            <iconPacks:PackIconMaterial Kind="ChevronDoubleRight" Width="32" Height="32"/>
           </Button>
+          <Button x:Name="ButtonSlowDown" 
+              Command="{Binding PlayPauseCommand}">
+            <Grid>
+              <iconPacks:PackIconMaterial Kind="ChevronDoubleDown" Width="32" Height="32"/>
+            </Grid>
+          </Button>
+          <Button x:Name="ButtonSpeedDown" 
+              Command="{Binding PlayPauseCommand}">
+            <Grid>
+              <iconPacks:PackIconMaterial Kind="ChevronDoubleUp" Width="32" Height="32"/>
+            </Grid>
+          </Button>
+          
         </UniformGrid>
 
         <Grid Grid.Row="2" Grid.Column="0" Margin="0,6,0,6">
@@ -183,7 +189,7 @@
       <Grid>
         <MediaElement x:Name="mePlayer" LoadedBehavior="Manual" MinWidth="200" MinHeight="100"
                   HorizontalAlignment="Left" Source="{Binding MediaPath}"
-                  ScrubbingEnabled="True"/>
+                  ScrubbingEnabled="True" />
       </Grid>
     </WrapPanel>
   </Grid>
