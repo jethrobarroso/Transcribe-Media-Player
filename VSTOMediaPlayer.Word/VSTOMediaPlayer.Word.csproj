@@ -278,7 +278,11 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Configuration\HotkeyLoader.cs" />
+    <Compile Include="Configuration\CustomConfiguration.cs" />
+    <Compile Include="Configuration\ICustomConfiguration.cs" />
+    <Compile Include="Configuration\IRelayConfig.cs" />
+    <Compile Include="Configuration\KeyParser.cs" />
+    <Compile Include="Configuration\RelayConfig.cs" />
     <Compile Include="Utility\VMLocator.cs" />
     <Compile Include="View\ApplicationRibbon.cs">
       <SubType>Component</SubType>
@@ -385,9 +389,7 @@
     <None Include="Resources\transcribe_close_icon_137082.png" />
     <Content Include="sample_video.mp4" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

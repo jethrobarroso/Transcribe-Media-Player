@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="VSTOMediaPlayer.Test" GeneratedClassName="TestSettings">
+  <Profiles />
+  <Settings>
+    <Setting Name="TogglePlayPause" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F1,1</Value>
+    </Setting>
+    <Setting Name="SkipBack" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F2,5</Value>
+    </Setting>
+    <Setting Name="SkipForward" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F3,5</Value>
+    </Setting>
+    <Setting Name="PlayUntilRelease" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F4,1</Value>
+    </Setting>
+    <Setting Name="PlayRepeat" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F9,5,1</Value>
+    </Setting>
+    <Setting Name="PlayWait" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F10,3</Value>
+    </Setting>
+    <Setting Name="VolumeUp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F6</Value>
+    </Setting>
+    <Setting Name="VolumeDown" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F5</Value>
+    </Setting>
+    <Setting Name="PlaybackUp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F8</Value>
+    </Setting>
+    <Setting Name="PlaybackDown" Type="System.String" Scope="User">
+      <Value Profile="(Default)">F7</Value>
+    </Setting>
+    <Setting Name="Snippets" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;{$time_short} Shrot time&lt;/string&gt;
+  &lt;string&gt;{$time_long} Long time&lt;/string&gt;
+  &lt;string&gt;{$date_short} Date short&lt;/string&gt;
+  &lt;string&gt;{$date_long} Date long&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
